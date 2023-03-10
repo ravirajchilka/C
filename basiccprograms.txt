@@ -1,0 +1,2013 @@
+=======================================================================
+                    Find factors of a given number
+=======================================================================
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+int main() {
+   int num = 15;
+
+   while(num%2==0) {
+      printf("val %d\n", 2);
+      num = num/2;
+   }
+
+   for(int count=3;count<=sqrt(num);count+=2) {
+      while(num%count==0) {
+          printf("val %d\n", count);
+          num = num/count;
+      }
+   }
+
+   if(num>2) {
+        printf("val %d\n", num);
+   }
+
+   return 0;
+}
+
+=======================================================================
+                    Remove char from given string
+=======================================================================
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void removeChar(char *s, int len, char charVal) {
+  for(int i=0;i<len;i++) {
+    if(*(s+i)==charVal) {
+      *(s+i) = *(s+i+1);
+    }
+  }
+  printf("%s",s);
+}
+
+int main() {
+
+  char s[] = "Testing-the-string!";
+  int slen = strlen(s); 
+  char *charPointer = strchr(s,'e');
+  // ensures 'e' exist in the given string
+  if(charPointer!=NULL) { 
+    removeChar(s,slen,'T');
+  }
+
+}   
+
+
+=======================================================================
+                    Replace char with something in given string
+=======================================================================
+
+****T will be replaced by W*****
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void removeChar(char *s, int len, char charVal) {
+  for(int i=0;i<len;i++) {
+    if(*(s+i)==charVal) {
+      *(s+i) = 'W';
+    }
+  }
+  printf("%s",s);
+}
+
+int main() {
+
+  char s[] = "Testing-the-string!";
+  int slen = strlen(s); 
+  char *charPointer = strchr(s,'T');
+  // ensures 'T' exist in the given string
+  if(charPointer!=NULL) { 
+    removeChar(s,slen,'T');
+  }
+
+}   
+
+
+=======================================================================
+                    string palindrom or not
+=======================================================================
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include <stdbool.h>
+
+int main() {
+
+  char s[] = "tescabacset";
+
+  int st = 0;
+  int strLength = strlen(s)-1;
+  int flag = true;
+  int midPt = strLength/2;
+
+  while(s[st]>midPt) {
+    if(*(s+st) != *(s+strLength-st)) {
+      flag = false;
+      break;
+    }
+    st++;
+  }
+
+  printf("value is %d",flag);
+  return 0;
+}   
+
+
+=======================================================================
+                    char is vowel or consonant
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main() {
+
+  char vowels[] = "aeiouAEIOU";
+  char input = 'i';
+  char *vowelPtr = strchr(vowels,input);
+
+  if(vowelPtr==NULL) {
+    printf("value is consonant\n");
+  } else {
+    printf("memory address %p\n",vowelPtr);
+    printf("value is vowel\n");
+  }
+  
+  return 0;
+}   
+
+=======================================================================
+                  Character can be incremented or decremented
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+
+ char ch = '8';
+
+ if(ch>='0' && ch<='9')
+	 {
+	  	printf("Given Character %c is Digit.", ch);
+	 }
+	 else
+	 {
+	  	printf("Given Character %c is Not Digit.", ch);
+	 }
+
+  return 0;
+}   
+
+
+=======================================================================
+                    Using a function replace char with something from given string
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void replace_By(char *s,int slen,char replaceValue) {
+  for(int i=0;i<slen;i++) {
+    if(*(s+i)==' ') {
+      *(s+i)=replaceValue;
+    }     
+  }
+}
+
+int main() {
+  char str[] = "we are quescol";
+  char replaceBy = 'p';
+  int slength = strlen(str);
+
+  replace_By(str,slength,replaceBy);
+  printf("%s\n",str);
+
+  return 0;
+}   
+
+
+=======================================================================
+                imaami code from Discord    
+=======================================================================
+
+#include <ctype.h>
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static char *unspace (char const *src)
+{
+    if (!src) {
+        fprintf(stderr, "%s: %s\n",
+                __func__, strerror(EINVAL));
+        return NULL;
+    }
+
+    size_t len = strlen(src);
+    char *ret = malloc(len + 1u);
+
+    if (!ret) {
+        perror("malloc");
+        return NULL;
+    }
+
+    char *dest = ret;
+    for (size_t i = 0; i < len; ++i) {
+        if (!isspace(src[i]))
+            *dest++ = src[i];
+    }
+    *dest = '\0';
+
+    return ret;
+}
+
+int main (int argc, char **argv)
+{
+    char *result = unspace(argv[1]);
+    if (!result)
+        return EXIT_FAILURE;
+
+    printf("\"%s\" -> \"%s\"\n",
+           argv[1], result);
+
+    free(result);
+    return EXIT_SUCCESS;
+}
+
+
+=======================================================================
+                    Most repeated char in string O(n2)
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int main() {
+  char s[] = "speedingspeeding";
+  char *sp = s;
+  int slen = strlen(s);
+  int max = 0;
+
+  for(int i=0;i<slen;i++) {
+    int count = 1;
+    for(int j=0;j<slen;j++) {
+      if(i!=j) {
+        if(s[i]==s[j]) {
+          count++;
+        }
+      }
+    }
+    if(max<count) {
+      max = count;
+    }
+    printf("count, s[i] %d %c\n",count, s[i]);
+  }
+  printf("max %d",max);
+  return 0;
+}   
+
+
+=======================================================================
+                    C create dictionary with Structure
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Person
+{
+    int age;
+    char* name;
+};
+
+int main() {
+    int totalRecords = 5;
+    struct Person *per = malloc(sizeof(struct Person) 
+    * totalRecords);
+
+    per[0].age = 8;
+    per[0].name = "Sam";
+
+    per[1].age = 6;
+    per[1].name = "Thomas";
+
+    per[2].age = 24;
+    per[2].name = "Anne";
+
+    for(int i=0;i<3;i++) {
+      printf("age %d\n name %s\n", per[i].age, per[i].name);
+    }
+    free(per);
+    return 0;
+
+}
+
+=======================================================================
+                   (using Struct) Find most occured character in string
+=======================================================================
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct Characters {
+    int total;
+    char charVal;
+};
+
+int main() {
+  char s[] = "where to go towards the beginning";
+  char *sp = s;
+  int slen = strlen(s);
+  int max = 0;
+  struct Characters *charMem = malloc(sizeof(struct Characters)*slen);
+
+  for(int i=0;i<slen;i++) {
+    int count = 1;
+    for(int j=0;j<slen;j++) {
+      if(i!=j) {
+        if(s[i]==s[j] && s[i]!= ' ') {
+          count++;
+        }
+      }
+    }
+
+    charMem[i].total = count;
+    charMem[i].charVal = s[i];
+
+    if(max<count) {
+      max = count;
+    }
+  }
+
+  for(int i=0;i<slen;i++) {
+    if(charMem[i].total==max) {
+      printf("count of %c is %d\n",charMem[i].charVal,charMem[i].total);
+      break;
+    }
+  }
+
+  free(charMem);
+  return 0;
+}
+
+
+=======================================================================
+                (using static array) Find most occured character in string
+=======================================================================
+
+#include<stdio.h>
+#include<string.h>
+
+int main() {
+  char s[] = "twitter";  
+  int ar[256] = {0};
+  int len = strlen(s);
+  int max = 0;
+  char maxCharValue;
+
+  for(int i=0;i<len;i++) {
+    ar[s[i]]++;
+  }
+
+  for(int i=0;i<len;i++) {
+     if(max< ar[s[i]]) {
+      max = ar[s[i]];
+      maxCharValue = s[i];
+     }
+  }
+
+  printf("%c, %d",maxCharValue,max);
+  return 0;
+}
+
+=======================================================================
+                (using static array) Find most occured number in array
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+
+  int ar[9] = {1,2,3,2,5,1,1,1,1};
+  int dummy[9] = {0};  
+  int max = 0;
+  int maxValue = 0;
+
+  for(int i=0;i<9;i++) {
+    dummy[ar[i]]++;
+    if(dummy[ar[i]]>max) {
+      max = dummy[ar[i]];
+      maxValue = ar[i];
+    }
+  }
+
+  printf("value %d repeadted %d times\n",maxValue,max);
+  return 0;
+}
+
+
+============================================================================================================
+                 (using dynamic/malloc array) Find most occured number in array
+=======================We can also use int arMem[arSize]; instead malloc====================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+
+  int ar[] = {1,2,3,2,5,1,1,1,5,5,5,5,5,5};
+  int arSize = sizeof(ar)/sizeof(int);
+  int *arMem= (int*)malloc(sizeof(int)*arSize);  
+  int max = 0;
+  int maxValue = 0;
+
+  for(int i=0;i<arSize;i++) {
+    arMem[ar[i]]++;
+    if(arMem[ar[i]]>max) {
+      max = arMem[ar[i]];
+      maxValue = ar[i];
+    }
+  }
+
+  printf("value %d repeadted %d times\n",maxValue,max);
+  free(arMem);
+  return 0;
+
+}
+
+
+=======================================================================
+                Print non duplicate values
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+
+  int ar[] = {1,2,3,2,5,1,1,1};
+  int arSize = sizeof(ar)/sizeof(int);
+  int arMem[arSize];
+  int max = 0;
+  int maxValue = 0;
+
+  for(int i=0;i<arSize;i++) {
+    arMem[ar[i]]++;
+  }
+
+  for(int i=0;i<arSize;i++) {
+    if(arMem[ar[i]]==1) {
+      printf("%d\n",ar[i]);   
+    }
+  }
+
+  return 0;
+
+}
+
+
+=======================================================================
+                Find min and max in array
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void printMaxMin(int *ar,int size) {
+  int min = 0, max =0;
+  for(int i=0;i<size;i++) {
+    if(*(ar+i)>max) {
+      max = *(ar+i);
+    } 
+  }
+  min = max;
+  for(int i=0;i<size;i++) {
+    if(*(ar+i)<min) {
+      min = *(ar+i);
+    }
+  }
+  printf("min is %d and max is %d\n",min,max);
+}
+
+
+int main() {
+
+  int ar[] = {300,1,34,22,1000,-40,90,114};
+  int size = sizeof(ar)/sizeof(int);
+
+  printMaxMin(ar,size);
+  return 0;
+
+}
+
+=======================================================================
+                Shift array items to left the right
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+  int ar[] = {3,5,6,7,8};
+  int size = sizeof(ar)/sizeof(int);
+  int *arMem = (int*)malloc(2*size*sizeof(int));
+
+  for(int m=0;m<size;m++) {
+    *(arMem+m) = *(ar+m);
+  }
+
+  for(int i=size-1;i>=0;i--) {
+      arMem[i+1] = arMem[i];
+  }
+
+  for(int i=0;i<size+1;i++) {
+      printf("%d\n",arMem[i]);
+    }
+
+  free(arMem);
+  return 0;
+}
+
+
+=======================================================================
+                (Need attention)Insert item at given index in array
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+  int ar[] = {3,5,6,7,8,34,12,78};
+  int size = sizeof(ar)/sizeof(int);
+  int *arMem = (int*)malloc(2*size*sizeof(int));
+  int givenPosition = 2;
+  int givenValue = 356;
+
+  for(int m=0;m<size;m++) {
+    *(arMem+m) = *(ar+m);
+  }
+
+  for(int i=size-1;i>=0;i--) {
+    if(i>givenPosition-1) {
+      arMem[i+1] = arMem[i];
+    }
+  }
+  arMem[givenPosition] = givenValue;
+  for(int i=0;i<size+1;i++) {
+    printf("%d\n",arMem[i]);
+  }
+
+  free(arMem);
+  return 0;
+}
+
+
+
+=======================================================================
+                (Need attention)Delete item at given index in array
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int ar[] = {13,4,5,6,8,9,1,32,56};
+	int size = sizeof(ar)/sizeof(int);
+	int *mem = (int*)malloc(sizeof(int)*size);
+	int index = -1;
+	int givenValue = 32;
+
+	for(int i=0;i<size;i++) {
+		*(mem+i) = *(ar+i);
+		if(*(mem+i)==givenValue) {
+			index = i;
+		}
+	}
+
+  if(index==-1) {
+		printf("item doesnt exist in array\n");
+		exit(0);
+	}
+
+	for(int k=0;k<size;k++) {
+		if(k>index-1) {
+			mem[k] = mem[k+1];
+		}
+	}
+ 	
+	for(int i=0;i<size-1;i++) {
+      printf("%d\n",mem[i]);
+    }
+	
+	free(mem);
+	return 0;
+}
+
+
+=======================================================================
+                (Need attention)Rotate given array by number of times
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int ar[7] = {13,4,5,8,7,6,54}; // 4,5,8,7,6,54,13
+	int size = sizeof(ar)/sizeof(int);
+	int noOfTimes = 3;
+
+	while(noOfTimes>0) {
+		noOfTimes--;
+		int temp = ar[0];
+			for(int i=0;i<size;i++) {
+			ar[i] = ar[i+1];
+		}
+		ar[6] = temp;
+	}
+
+	for(int i=0;i<size;i++) {
+		printf("%d | ",ar[i]);
+	}	
+	return 0;
+}
+
+
+=======================================================================
+                            Patterns
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+
+*
+**
+***
+****
+
+*/
+
+int main() {
+	int rows = 4;
+	for(int i=1;i<rows+1;i++) {
+		for(int k=0;k<i;k++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+}
+
+============================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+
+**** 
+***
+**
+*
+
+*/
+
+int main() {
+	int rows = 4;
+	for(int i=rows;i>=0;i--) {
+		for(int k=i;k>0;k--) {
+			printf("*");
+		}	
+	printf("\n");	
+	}
+}
+
+=============================================================================
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+
+**** 
+ ***
+  **
+   *
+
+*/
+
+int main() {
+	int rows = 5;
+	for(int i=rows;i>0;i--) {
+		for(int j=1;j<rows+1-i;j++) {
+			printf(" ");
+		}
+		for(int k=0;k<i;k++) {
+			printf("*");
+		}
+		printf("\n");
+	}	
+	return 0;	
+}
+
+
+=================================================================
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+*/
+
+int main() {
+	int rows = 5;
+	for(int i=0;i<rows;i++) {
+		for(int j=0;j<=i;j++) {
+			printf("%d ",j+1);
+		}
+		printf("\n");	
+	}
+
+	return 0;	
+}
+
+
+===============================================================
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+ 	  *
+   ***
+  *****
+ *******
+*********
+
+*/
+
+int main() {
+	int rows = 5;
+	int n = rows;
+	int spaces = rows-1; 
+
+	for(int i=0;i<n;i++) {
+		int odd = (2*i)+1;
+		for(int j=spaces-i;j>0;j--) {
+			printf(" ");
+		}
+		for(int k=odd;k>0;k--) {
+			printf("*");
+		}
+		for(int j=spaces-i;j>0;j--) {
+			printf(" ");
+		}
+		printf("\n");	
+	}
+
+	return 0;	
+}
+
+
+===============================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+ 	12345
+	1234
+	123
+	12
+	1
+
+*/
+
+int main() {
+	int rows = 5;
+	for(int i=rows;i>0;i--) {
+		for(int k=1;k<=i;k++) {
+			printf("%d",k);
+		}
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+===============================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+ 	   *
+	  **
+	 ***
+	****
+
+*/
+
+int main() {
+	int rows = 5;
+	for(int i=0;i<rows;i++) {
+		for(int k=rows-i;k>0;k--) {
+			printf(" ");
+		}
+		for(int j=0;j<i+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+
+============================*Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+	*******
+	 *****
+	  ***
+ 	   *
+*/
+
+int main() {
+	int rows = 4;
+	int n = (rows*2)-1;
+	for(int i=0;i<rows;i++) {
+		for(int k=0;k<i;k++) {
+			printf(" ");
+		}
+		for(int j=n;j>0;j--) {
+			printf("*");
+		}
+		n -= 2;
+		printf("\n");
+	}
+	
+	return 0;	
+}
+
+
+============================*Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+  
+  *
+  **
+  ***
+  ****
+  ***
+  **
+  *
+
+*/
+
+int main() {
+	int rows = 8;
+	for(int i=0;i<rows/2;i++) {
+		for(int k=0;k<=i;k++) {
+			printf("*");
+		}
+    	printf("\n");
+	}
+
+	for(int i=rows/2;i>=0;i--) {
+		for(int k=0;k<=i;k++) {
+			printf("*");
+		}
+    	printf("\n");
+	}
+
+	return 0;	
+}
+
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+     *
+    **
+   ***
+  ****
+ *****
+******
+ *****
+  ****
+   ***
+    **
+     *
+*/
+
+int main() {
+	int rows = 10;
+	for(int i=0;i<rows/2;i++) {
+		for(int j=(rows/2)-i;j>0;j--) {
+			printf(" ");
+		}
+		for(int k=0;k<=i;k++) {
+			printf("*");
+		}
+    	printf("\n");
+	}
+
+	for(int i=rows/2;i>=0;i--) {
+		for(int j=0;j<(rows/2)-i;j++) {
+			printf(" ");
+		}
+		for(int k=0;k<=i;k++) {
+			printf("*");
+		}
+    	printf("\n");
+	}
+	return 0;	
+}
+
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+  	   *
+  	  ***
+  	 *****
+  	*******
+  	 *****
+  	  ***
+  	   *
+*/
+
+int main() {
+	int rows = 7;
+	for(int i=0;i<=rows/2;i++) {
+		for(int k=(rows/2)-i;k>0;k--) {
+			printf(" ");
+		}
+		for(int j=0;j<(i*2)+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	for(int i=rows/2;i>=0;i--) {
+		for(int k=(rows/2)-i;k>0;k--) {
+			printf(" ");
+		}
+		for(int j=0;j<(i*2)+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+  	  1
+	  2 3
+	  4 5 6
+	  7 8 9 10
+
+*/
+
+int main() {
+	int rows = 7;
+	int num = 0;
+
+	for(int i=1;i<rows+1;i++) {
+		for(int k=0;k<i;k++) {
+			num++;
+			printf("%d ",num);
+		}
+		printf("\n");
+	}	
+
+	return 0;	
+}
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+     *****
+    *****
+   *****
+  *****
+ *****
+*/
+
+int main() {
+	int rows = 5;
+	int spaces = rows-1;
+	for(int i=0;i<rows;i++) {
+		for(int j=rows-i;j>0;j--) {
+			printf(" ");
+		}
+		for(int k=0;k<rows;k++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+ *****
+  *****
+   *****
+    *****
+     *****
+*/
+
+int main() {
+	int rows = 5;
+	for(int i=0;i<rows;i++) {
+		for(int j=0;j<i;j++) {
+			printf(" ");
+		}
+		for(int k=0;k<rows;k++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+		****
+		*  *
+		****
+*/
+
+int main() {
+	int rows = 3;
+	int cols = 4;
+	for(int i=0;i<rows;i++) {
+		for(int k=0;k<cols;k++) {
+			if(i==1) {
+				if(k==1 || k==rows-1) {
+					printf(" ");
+				} else {
+					printf("*");
+				}
+			} else {
+				printf("*");
+			}
+		}
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+//////////////////////////Not solved////////////////////////////////////
+
+
+============================***Important===================================
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+		
+      *
+     *-*
+    *---*
+   *-----*
+  *-------*
+ *---------*
+
+*/
+
+int main() {
+	int rows = 5;
+	printf("      *\n");
+
+	for(int i=0;i<rows;i++) {
+		for(int k=rows-i;k>0;k--) {
+			printf(" ");	
+		}
+		printf("*");
+		for(int j=1;j<=i*2+1;j++) {
+			printf("-");
+		}
+		printf("*");
+		printf("\n");
+	}
+
+	return 0;	
+}
+
+
+============================***Important===================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+		
+*-----------*
+ *---------*
+  *-------*
+   *-----*
+    *---*
+      *
+*/
+
+int main() {
+	int rows = 5;
+	for(int i=rows;i>0;i--) {
+		for(int k=rows-i;k>0;k--) {
+			printf(" ");	
+		}
+		printf("*");
+		for(int j=1;j<=i*2+1;j++) {
+			printf("-");
+		}
+		printf("*");
+		printf("\n");
+	}
+	printf("      *\n");
+	return 0;	
+}
+
+
+============================***Important===================================
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+		
+*
+--
+***
+----
+*****
+------
+*******
+*******
+------
+*****
+----
+***
+--
+*
+
+*/
+
+int main() {
+	int rows = 3;
+	for(int i=0;i<=rows;i++) {
+		for(int k=0;k<i*2;k++) {
+			printf("-");
+		}
+		printf("\n");
+
+		for(int j=0;j<(i*2)+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	for(int i=rows;i>=0;i--) {
+		for(int j=0;j<(i*2)+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+		for(int k=0;k<i*2;k++) {
+			printf("-");
+		}
+		printf("\n");
+	}
+	return 0;	
+}
+
+
+============================***Not solved===================================
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/*
+      *
+    --
+    ***
+   ----
+  *****
+  ------
+*******
+*******
+------
+  *****
+  ----
+    ***
+    --
+      *
+
+*/
+
+int main() {
+	int rows = 3;
+	for(int i=0;i<=rows;i++) {
+		for(int m=rows-i+2;m>0;m--) {
+			printf(" ");
+		}
+		for(int k=0;k<i*2;k++) {
+			printf("-");
+		}
+		printf("\n");
+		for(int m=rows-i;m>0;m--) {
+			printf("  ");
+		}
+		for(int j=0;j<(i*2)+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+	}
+
+	for(int i=rows;i>=0;i--) {
+		for(int m=rows-i;m>0;m--) {
+			printf("  ");
+		}
+		for(int j=0;j<(i*2)+1;j++) {
+			printf("*");
+		}
+		printf("\n");
+		for(int m=rows-i;m>0;m--) {
+			printf("  ");
+		}
+		for(int k=0;k<i*2;k++) {
+			printf("-");
+		}
+		printf("\n");
+	}
+	return 0;	
+}
+
+=======================================================================
+                Fibbonacci series using iteration
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int limit = 10;
+	int s = 1;
+	int t = -1;
+	int r = s+t;
+
+	while(limit>0) {
+		r = s+t;
+		printf("%d\n",r);
+		t = s;
+		s = r;
+		limit--;
+	}
+	return 0;	
+}
+
+=======================================================================
+                Fibbonacci series using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int s = 1;
+int t = -1;
+int r = 0;
+
+void fib(int n) {
+	if(n<1) {
+		return;
+	}
+	r = s+t;
+	printf("%d\n",r);
+	t = s;
+	s = r;
+	fib(n-1);
+}
+
+int main() {
+	fib(10);
+	return 0;	
+}
+
+
+
+=======================================================================
+                Reversing a number using iteration
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int n = 123456;
+	int res = n%10;
+	while(n>0) {
+		n = n/10;
+		res = res*10+(n%10);
+	}
+	res = res/10;
+	printf("res %d",res);
+	return 0;	
+}
+
+=======================================================================
+                Grouping array elements using iteration
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int ar[] = {1,2,3,4,5,6,7,8,9,10,11,12};
+	int partition = 3;
+	int counter = 0;
+
+	for(int i=0;i<12;i++) {
+		counter++;
+		printf("%d\n",ar[i]);
+		if(counter%partition==0) {
+			printf("\n");
+		}
+	}
+
+	return 0;	
+}
+
+
+=======================================================================
+                Sum of digits using iteration
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int n = 1234;
+	int total = 0;
+
+	while(n>0) {
+		total += n%10;
+		n = n/10;
+	}
+	printf("total %d",total);
+	return 0;	
+}
+
+
+=======================================================================
+                Sum of digits using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void sum(int n, int *tot) {
+	if(n==0) {
+		return;
+	}
+	*tot += n%10;
+	 sum(n/10,tot);
+}
+
+int main() {
+	int total = 0;
+	sum(20,&total);
+	printf("%d\n",total);
+	return 0;
+}
+
+
+=======================================================================
+                Sum of all numbers in given number using Recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void add(int n, int *sum) {
+	if(n==-1) {
+		return;
+	}
+	*sum += n;
+	add(n-1,sum);
+}
+
+int main() {
+	int sum = 0;
+	add(10,&sum);
+	printf("total is %d\n",sum);
+	return 0;
+}
+
+/////// WITHOUT USING SUM variable //////
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int add(int n) {
+	if(n==0) {
+		return;
+	}
+	return n+add(n-1); // n+(n-1)+(n-1-1)+(n-1-1-1)+.... or n+(n-1)+(n-2)
+}
+
+int main() {
+	int sum = add(20);
+	printf("total is %d\n",sum);
+	return 0;
+}
+
+
+=======================================================================
+                Slice array based on given divider value
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void printAr(int *ar, int size, int divide) {
+	for(int i=0;i<size;i=i+divide) {
+		for(int k=i;k<i+divide;k++) {
+			printf("%d\n",ar[k]);
+		}
+		printf("\n");
+	}
+}
+
+int main() {
+	int ar[] = {1,2,3,4,5,6,7,8,10,11,12,13};
+	int size = sizeof(ar)/sizeof(int);
+	printAr(ar,size,4);
+	return 0;
+}
+
+=======================================================================
+            Slice array based on given divider value with Recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void printAr(int *ar, int size, int divide) {
+	if(divide>=12) {
+		return;
+	}
+	for(int k=divide;k<divide+4;k++) {
+		printf("%d\n",ar[k]);
+	}
+	printf("\n");
+	printAr(ar,size,divide+=4);
+}
+
+int main() {
+	int ar[] = {1,2,3,4,5,6,7,8,10,11,12,13};
+	int size = sizeof(ar)/sizeof(int);
+	printAr(ar,size,0);
+	return 0;
+}
+
+
+=======================================================================
+            Create 2 halves of array and find even numbers
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void findEvenNums(int *ar,int start, int end,int size, int counter) {
+	counter++;
+	for(int i=start;i<end;i++) {
+		if(ar[i]%2==0) {
+			printf("%d\n",ar[i]);
+		}
+	}
+	if(counter==2) {
+		return;
+	}
+	
+	end = size;
+	int mid = size/2;
+	findEvenNums(ar,0,mid,size,counter);
+	printf("-----%d\n",counter);
+	findEvenNums(ar,mid+1,end,size,counter);
+	printf("-----%d\n",counter);
+}
+
+int main() {
+	int ar[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+	int size = sizeof(ar)/sizeof(int);
+	int counter = 0;
+	findEvenNums(ar,0,1,size,counter);
+	return 0;
+}
+
+
+=======================================================================
+            Find midpoints of 2 halves using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void printMids(int m, int *ar, int start, int end) {
+	int mid = (start+end)/2;
+
+	if(start==end || start>=mid) {
+		return;
+	}
+
+	printf("%d\n",ar[mid]);
+	printMids(m,ar,start,end/2);
+	printMids(m,ar,mid,end);
+}
+
+void pMid(int m, int *ar, int start, int end) {
+	int mid = (start+end)/2;
+	if(start>=mid) {
+		return;
+	}
+	printf("mid ---%d\n",ar[mid]);
+	pMid(m,ar,mid,end);
+}
+
+int main() {
+	int ar[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int size = sizeof(ar)/sizeof(int);
+	int end = size;
+	int start = 0;
+	int mid = end/2;
+	printMids(mid,ar,start,end);
+	return 0;
+}
+
+
+=======================================================================
+            	1st Binary Search using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int binarySearch(int target, int *ar,int start, int end) {
+	int mid = (start+end)/2;
+	if(end<start) {
+		printf("no records");
+		exit(0);		
+	}
+	if(ar[mid]==target) {
+		printf("index %d\n",mid);
+		return mid;
+	} else {
+		if(ar[mid]>target) {
+			binarySearch(target,ar,start,mid-1);
+		}		
+		if(ar[mid]<target) {
+			binarySearch(target,ar,mid+1,end);
+		}
+	}
+}
+
+int main() {
+	int ar[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int size = sizeof(ar)/sizeof(int);
+	int end = size;
+	int start = 0;
+	int target = 10;
+	binarySearch(target,ar,start,end);
+	return 0;
+}
+
+=======================================================================
+            	2nd Binary Search using recursion
+=======================================================================
+
+#include<stdio.h>
+
+void binsearch(int *ar, int len, int start, int last, int target) {
+  int mid = (start+last)/2;
+  if(mid==last) {
+    printf("Item not found!\n");
+    return;
+  }
+  if(ar[mid]==target) {
+    printf("index and value is %d %d\n",mid,target);
+    return;
+  }
+  if(target<ar[mid]) {
+    binsearch(ar,len,0,mid-1,target);
+  }
+  if(target>ar[mid]) {
+    binsearch(ar,len,mid+1,last,target);
+  }
+}
+
+int main() {
+  int ar[] = {2,3,5,6,8,9,10};
+  int target = 2;
+  int len = sizeof(ar)/sizeof(int);
+  int last = len;
+  binsearch(ar,len,0,last,target);
+  return 0;
+}
+
+
+=======================================================================
+            Recursively print 2 halves of arrays numbers
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void printNums(int m, int *ar,int start, int end) {
+	printf("nums %d\n",ar[start]);
+	if(start<m) {
+		printNums(m,ar,++start,m);
+	}
+	if(m<end-1) {
+		printNums(m,ar,++m,end);
+   } 
+}
+
+int main() {
+    int ar[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    int size = sizeof(ar)/sizeof(int);
+    int end = size;
+    int start = 0;
+    int mid = end/2;
+    printNums(mid,ar,start,end);
+    return 0;
+}
+
+=======================================================================
+            Reverse a string using iteration O(n2)
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void swap(char *a, char *b) {
+	char temp = *b;
+	*b = *a;
+	*a = temp;
+}
+
+void reverse(char *str, int size) {
+	for(int i=0;i<size;i++) {
+		for(int k=size-1;k>i;k--) {
+			swap(&str[k-1],&str[k]);
+		}
+	}
+}
+
+int main() {
+	char s[] = "randomvalue";
+	int size = strlen(s);
+	reverse(s,size);
+	printf(" %s\n",s);
+	return 0;
+}
+
+
+=======================================================================
+            Reverse a string using iteration O(n/2)
+=======================================================================
+
+#include<stdio.h>
+#include<string.h>
+
+void swap(char *a, char *b) {
+	char temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void reverse(char *str, int len) {
+	for(int i=0;i<len/2;i++) {
+		printf("%c - %c\n",str[i],str[len-1-i]);
+		swap(&str[i],&str[len-i]);
+	}
+}
+
+int main() {
+	char s[] = "randomvalue";
+	reverse(s,strlen(s)-1);
+	return 0;
+}
+
+
+=======================================================================
+            	Reverse a string using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<string.h>
+
+void swapchars(char *a, char *b) {
+	char temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void reverse(char *s, int len, char *lastaddr) {
+	if(s<=lastaddr) {
+		printf("%c %c\n",*s,*lastaddr);
+		swapchars(s,lastaddr);
+		reverse(s+1,len,lastaddr-1);
+	}
+}
+
+int main() {
+	char str[] = "somevalue";
+	int len = strlen(str);
+	char *lastaddr = str+len-1;
+	reverse(str,len-1,lastaddr);
+	printf("%s",str);
+	return 0;
+}
+
+
+
+=======================================================================
+            	Find max number in an array
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int findmax(int *ar, int *max, int size) {
+	for(int i=0;i<size;i++) {
+		if(*max<*(ar+i)) {
+			*max = *(ar+i);
+		}
+	}
+	return *max;
+}
+
+int main() {
+	int ar[8] = {-1,-78,3,-68,-9,-5,-14,-1};
+	int max = -100000;
+	int size = sizeof(ar)/sizeof(int);
+	findmax(ar,&max,size);
+	printf("max  %d\n",max);
+	return 0;
+}
+
+
+
+=======================================================================
+            	Find max number in an array using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int findmax(int *ar, int *max, int size, int lastval) {
+	if(*(ar)==lastval) {
+		return *max;
+	}	
+	if(*max<*(ar)) {
+		*max = *(ar);
+	}
+	findmax(ar+1,max,size,lastval);
+}
+
+int main() {
+	int ar[8] = {1,-78,253,68,9,505,14,33};
+	int max = -100000;
+	int size = sizeof(ar)/sizeof(int);
+	int lastvalue = ar[size-1];
+	findmax(ar,&max,size,lastvalue);
+	printf("max  %d\n",max);
+	return 0;
+}
+
+
+
+=======================================================================
+            	Convert decimal to binary using recursion
+=======================================================================
+
+#include<stdio.h>
+
+void decimaltobinary(int num) {
+	if(num>=1){
+		decimaltobinary(num/2);
+		if(num%2==0) {
+			printf("%d",0);
+		} else {
+			printf("%d",1);
+		}
+	}
+}
+
+int main() {
+	printf("decimal to binary : ");
+	decimaltobinary(66);
+	printf("\n");
+	return 0;
+}
+
+
+
+=======================================================================
+            	Check string is palindrome or not using recursion
+=======================================================================
+
+#include<stdio.h>
+#include<string.h>
+
+void checkpalindrome(char *s, char *lastaddr) {
+	if(s>=lastaddr) {
+		printf("palindrome");
+		return;
+	}
+	if(*s!=*lastaddr) {
+		printf("not palindrome\n");
+		return;
+	}
+	checkpalindrome(s+1,lastaddr-1);
+}
+
+int main() {
+	char str[] = "radar";
+	int len = strlen(str);
+	char *lastaddress = str+len-1;
+	checkpalindrome(str,lastaddress);
+	return 0;
+}
+
+
+=======================================================================
+            	Hailstone number sequence
+=======================================================================
+
+#include<stdio.h>
+
+void hailstonesequence(int num, int *seq) {
+	printf("%d\n",num);
+	(*seq)++;
+	if(num<=1) {
+		return;
+	}
+	if(num%2==0) {
+		num /= 2;
+	} else {
+		num = (num*3)+1;
+		// can be writtne as num *= 3;num++;
+	}
+	hailstonesequence(num,seq);
+}
+
+int main() {
+	int sequence = 0;
+	hailstonesequence(13,&sequence);
+	printf("sequence total %d\n",sequence);
+	return 0;
+}
+
+
+=======================================================================
+            	Copy One string to another using recursion.
+=======================================================================
+
+#include<stdio.h>
+
+void copystring(char *str, char *nstr) {  
+  if(*str!='\0') {
+    *nstr = *str;
+    copystring(str+1,nstr+1);
+  }
+}
+
+int main() {
+  char str[] = "something is going on here!";
+  int len = sizeof(str)/sizeof(char)-1;
+  char nstr[len];
+  copystring(str,nstr);
+  printf("%s\n",nstr);
+  return 0;
+}
+
+
+=======================================================================
+        	Find the first capital letter in a string using recursion
+=======================================================================
+
+#include<stdio.h>
+
+void findfirstuppercase(char *str) {  
+  if(*str>=65 && *str<=90) {
+    printf("%c\n",*str);
+    return;
+  }
+  if(*str!='\0') {
+    findfirstuppercase(str+1);
+  }
+}
+
+int main() {
+  char str[] = "something is Z going on here!";
+  findfirstuppercase(str);
+  return 0;
+}
+
+
+=======================================================================
+        	Find the min stair (Hackerrank problem)
+=======================================================================
+
+#include<stdio.h>
+
+void findstair(int *ar, int *res,int len) {
+  for(int j=0;j<10;j++) {
+    int res = j;
+    for(int i=0;i<len;i++) {
+      res += *(ar+i);
+      if(res<=0) {
+        break;
+      }
+      if(i==len-1) {
+        printf("%d\n",j); 
+        return;
+      }
+    }
+  }
+}
+
+int main() {
+  int ar[] = {1,-4,-2,-3};
+  int res = 0;
+  int len = sizeof(ar)/sizeof(int);
+  findstair(ar,&res,len);
+  test();
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
