@@ -1,0 +1,39 @@
+{
+    "workbench.sideBar.location": "right",
+    "workbench.colorCustomizations": {
+      "terminal.foreground" : "#6f922e"
+    },
+    "saveAndRun": {
+        "commands": [
+            {
+              "match": ".C",
+              "cmd": "gcc -o cpractice cpractice.c -lm",
+              "useShortcut": false,
+              "silent": false
+            },
+            {
+              "match": "\\.c$",
+              "cmd": "./cpractice",
+              "useShortcut": false,
+              "silent": false
+            },
+            {
+              "match": ".asm",
+              "cmd": "fasm x86practice.asm",
+              "useShortcut": false,
+              "silent": false
+            },
+            {
+              "match": "\\.asm$",
+              "cmd": "./x86practice",
+              "useShortcut": false,
+              "silent": false
+            }
+          ]
+    },
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.tabs.enabled": false,
+    "editor.fontSize": 16,
+    "[bibtex]": {}
+}
+
