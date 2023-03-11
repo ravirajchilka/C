@@ -8,7 +8,7 @@ void removechar(char *s, int len, char charVal) {
       *(s+i) = *(s+i+1);
     }
   }
-  printf("%s",s);
+  printf("string %s",s);
 }
 
 int main() {

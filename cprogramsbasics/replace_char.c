@@ -8,7 +8,7 @@ void replacechar(char *s, int len, char charVal) {
       *(s+i) = 'W';
     }
   }
-  printf("%s",s);
+  printf("string %s",s);
 }
 
 int main() {
