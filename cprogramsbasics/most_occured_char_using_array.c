@@ -9,10 +9,7 @@ int main() {
   char maxCharValue;
 
   for(int i=0;i<len;i++) {
-    ar[s[i]]++;
-  }
-
-  for(int i=0;i<len;i++) {
+     ar[s[i]]++;
      if(max< ar[s[i]]) {
       max = ar[s[i]];
       maxCharValue = s[i];
