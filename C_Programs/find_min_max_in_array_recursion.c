@@ -1,6 +1,4 @@
-
 #include<stdio.h>
-#include<stdlib.h>
 
 int findmax(int *ar, int *max, int size, int lastval) {
 	if(*(ar)==lastval) {
