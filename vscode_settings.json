@@ -28,6 +28,24 @@
               "cmd": "./x86practice",
               "useShortcut": false,
               "silent": false
+            },
+            {
+              "match": ".cpp",
+              "cmd": "g++ cpppractice.cpp",
+              "useShortcut": false,
+              "silent": false
+            },
+            {
+              "match": "\\.cpp$",
+              "cmd": "./a.exe",
+              "useShortcut": false,
+              "silent": false
+            },
+            {
+              "match": "practice.py",
+              "cmd": " & c:/Users/ravir/OneDrive/Documents/Python/pandasenv/Scripts/python.exe c:/Users/ravir/OneDrive/Documents/Python/pythonpractice/practice.py",
+              "useShortcut": false,
+              "silent": false
             }
           ]
     },
